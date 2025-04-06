@@ -1,6 +1,14 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { FloatingNav } from "@/components/FloatingNav";
+import Footer from "@/components/Footer";
+import ApolloClientProvider from "@/context/ApolloProvider";
+import UserProvider from "@/context/UserProvider";
+import { useUserStore } from "@/store/useUserStore";
+import FixedHeader from "@/components/FixedHeader";
+import { Toaster } from "react-hot-toast";
+import ChatListenerWrapper from "@/context/ChatListenerWrapper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,9 +33,26 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#fffcf5]`}
       >
-        {children}
+        <UserProvider>
+          <ApolloClientProvider>
+            <ChatListenerWrapper />
+            <FloatingNav
+              navItems={[
+                { name: "Home", link: "#" },
+                { name: "Browse Books", link: "#" },
+                { name: "Sell Books", link: "#" },
+              ]} 
+              className="bg-[#5C4033] text-[#FFEDD5]" // Cocoa Brown with Soft Peach Text
+            />
+            <FixedHeader />
+
+            <main className="flex-grow relative ">{children}</main>
+            <Toaster />
+            <Footer />
+          </ApolloClientProvider>
+        </UserProvider>
       </body>
     </html>
   );
