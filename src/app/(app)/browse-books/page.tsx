@@ -61,7 +61,7 @@ const BrowseBooks = () => {
   const [selectedGenre, setSelectedGenre] = useState("All");
   const [books, setBooks] = useState<Book[]>([]);
 
-  const { loading, error, data } = useQuery(GQLQueries.GET_ALL_BOOK_REQUESTS);
+  const { loading, data } = useQuery(GQLQueries.GET_ALL_BOOK_REQUESTS);
 
   useEffect(() => {
     if (data && data.getAllBookRequests) {
