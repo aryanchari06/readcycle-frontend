@@ -23,6 +23,8 @@ const eslintConfig = [
         },
       ],
       "@typescript-eslint/no-unused-vars": "off", // disable 'no-unused-vars'
+      "@typescript-eslint/no-explicit-any": "off",
+      "prefer-const": "off",
     },
   },
 ];
