@@ -19,8 +19,10 @@ import Link from "next/link";
 import { useMutation } from "@apollo/client";
 import { GQLMutations } from "@/graphql";
 import { Loader2 } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 const Page = () => {
+  const router = useRouter();
   const form = useForm<z.infer<typeof signUpSchema>>({
     resolver: zodResolver(signUpSchema),
     defaultValues: {
@@ -35,9 +37,12 @@ const Page = () => {
   );
 
   async function onSubmit(values: z.infer<typeof signUpSchema>) {
-    const {firstName, lastName, email, password} = values
-    const user = await createUser({variables: {firstName, lastName, email, password}});
-    console.log(user)
+    const { firstName, lastName, email, password } = values;
+    const user = await createUser({
+      variables: { firstName, lastName, email, password },
+    });
+    if (user) router.replace("/verify-user");
+    console.log(user);
   }
 
   return (
