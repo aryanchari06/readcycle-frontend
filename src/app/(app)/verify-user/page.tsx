@@ -18,8 +18,10 @@ import {
 import { useMutation } from "@apollo/client";
 import { GQLMutations } from "@/graphql";
 import { Loader2 } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 const Page = () => {
+  const router = useRouter();
   const form = useForm<z.infer<typeof verifySchema>>({
     resolver: zodResolver(verifySchema),
     defaultValues: {
@@ -36,6 +38,7 @@ const Page = () => {
     const { email, verifyCode } = values;
     const user = await verifyUser({ variables: { email, verifyCode } });
     console.log("verified user: ", user);
+    if (user) router.replace("/signin");
   }
 
   return (
