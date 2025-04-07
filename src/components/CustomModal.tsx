@@ -48,7 +48,7 @@ export function AnimatedModal({
             <p className="mt-4 text-[#5D4037] text-sm leading-relaxed">
               Messaging the seller allows you to{" "}
               <span className="font-bold">
-                negotiate pricing, ask about the book's condition, and confirm
+                negotiate pricing, ask about the book&apos;s condition, and confirm
                 availability
               </span>{" "}
               before purchasing.

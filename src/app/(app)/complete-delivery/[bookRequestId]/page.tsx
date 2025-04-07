@@ -8,7 +8,7 @@ import { useParams, useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 import toast from "react-hot-toast";
 
-const page = () => {
+const Page = () => {
   const { bookRequestId } = useParams();
   const router = useRouter();
   const {
@@ -137,4 +137,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

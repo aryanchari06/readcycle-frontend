@@ -59,7 +59,7 @@ const Page = () => {
     }
   };
 
-  const handleOTPSubmit = async (otp: String) => {
+  const handleOTPSubmit = async (otp: string) => {
     const result = await confirmRequest({
       variables: {
         bookRequestId,

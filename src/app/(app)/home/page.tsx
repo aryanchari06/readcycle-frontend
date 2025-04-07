@@ -5,7 +5,7 @@ import { BookListing } from "./BookListing";
 import Hero from "./Hero";
 import { useUserStore } from "@/store/useUserStore";
 
-const page = () => {
+const Page = () => {
   const user = useUserStore((state) => state.user);
 
   return (
@@ -18,4 +18,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
