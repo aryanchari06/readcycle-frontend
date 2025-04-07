@@ -5,13 +5,17 @@ import { getMainDefinition } from "@apollo/client/utilities";
 import { createClient } from "graphql-ws";
 
 const httpLink = new HttpLink({
-  uri: "http://localhost:8000/graphql",
+  uri: process.env.NEXT_PUBLIC_BACKEND_BASE_URL,
   credentials: "include",
 });
 
-const wsLink = new GraphQLWsLink(
-  createClient({ url: "ws://localhost:8000/graphql" })
-);
+const wsUrl = process.env.NEXT_PUBLIC_WS_BACKEND_BASE_URL;
+
+if (!wsUrl) {
+  throw new Error("WebSocket URL is not defined in env variables");
+}
+
+const wsLink = new GraphQLWsLink(createClient({ url: wsUrl }));
 
 const splitLink = split(
   ({ query }) => {
